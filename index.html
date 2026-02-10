@@ -1,0 +1,449 @@
+<!doctype html>
+<html lang="id" class="h-full">
+ <head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Inovasi Tegining-Teganang</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script src="/_sdk/element_sdk.js"></script>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700;800&amp;family=DM+Sans:wght@300;400;500;600&amp;display=swap" rel="stylesheet">
+  <style>
+    body {
+      box-sizing: border-box;
+      font-family: 'DM Sans', sans-serif;
+      margin: 0;
+      padding: 0;
+    }
+
+    .font-display {
+      font-family: 'Playfair Display', serif;
+    }
+
+    /* Background with image and overlay */
+    .bg-animated {
+      background-image: url('https://raw.githubusercontent.com/kak-ewan/the-innovation-of-tegining-and-teganang/refs/heads/main/bgweb.jpg');
+      background-size: cover;
+      background-position: center;
+      background-attachment: fixed;
+      position: relative;
+    }
+
+    .bg-animated::before {
+      content: '';
+      position: fixed;
+      inset: 0;
+      background: linear-gradient(135deg, rgba(10, 22, 40, 0.75) 0%, rgba(26, 39, 68, 0.7) 30%, rgba(15, 32, 39, 0.75) 60%, rgba(10, 22, 40, 0.75) 100%);
+      pointer-events: none;
+      z-index: 0;
+    }
+
+    .bg-animated > * {
+      position: relative;
+      z-index: 1;
+    }
+
+    /* Floating particles */
+    .particle {
+      position: absolute;
+      border-radius: 50%;
+      pointer-events: none;
+      animation: float 8s ease-in-out infinite;
+    }
+
+    @keyframes float {
+      0%, 100% { transform: translateY(0) rotate(0deg); opacity: 0.3; }
+      33% { transform: translateY(-30px) rotate(120deg); opacity: 0.7; }
+      66% { transform: translateY(15px) rotate(240deg); opacity: 0.4; }
+    }
+
+    /* Language card hover */
+    .lang-card {
+      transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+      backdrop-filter: blur(12px);
+    }
+    .lang-card:hover {
+      transform: translateY(-8px) scale(1.03);
+      box-shadow: 0 20px 60px rgba(56, 189, 248, 0.2);
+    }
+    .lang-card:active {
+      transform: translateY(-2px) scale(0.98);
+    }
+
+    /* Stagger animations */
+    .fade-up {
+      opacity: 0;
+      transform: translateY(40px);
+      animation: fadeUp 0.8s ease forwards;
+    }
+    @keyframes fadeUp {
+      to { opacity: 1; transform: translateY(0); }
+    }
+    .delay-1 { animation-delay: 0.15s; }
+    .delay-2 { animation-delay: 0.3s; }
+    .delay-3 { animation-delay: 0.45s; }
+    .delay-4 { animation-delay: 0.6s; }
+    .delay-5 { animation-delay: 0.75s; }
+
+    /* Page transition */
+    .page-exit {
+      animation: pageExit 0.6s ease forwards;
+    }
+    @keyframes pageExit {
+      to { opacity: 0; transform: scale(0.95) translateY(-20px); }
+    }
+    .page-enter {
+      animation: pageEnter 0.8s ease forwards;
+    }
+    @keyframes pageEnter {
+      from { opacity: 0; transform: scale(0.95) translateY(30px); }
+      to { opacity: 1; transform: scale(1) translateY(0); }
+    }
+
+    /* Maintenance gear animation */
+    .gear-spin {
+      animation: gearSpin 6s linear infinite;
+    }
+    @keyframes gearSpin {
+      to { transform: rotate(360deg); }
+    }
+    .gear-spin-reverse {
+      animation: gearSpinReverse 8s linear infinite;
+    }
+    @keyframes gearSpinReverse {
+      to { transform: rotate(-360deg); }
+    }
+
+    /* Pulse ring */
+    .pulse-ring {
+      animation: pulseRing 2.5s ease-out infinite;
+    }
+    @keyframes pulseRing {
+      0% { transform: scale(0.8); opacity: 0.6; }
+      100% { transform: scale(1.8); opacity: 0; }
+    }
+
+    /* Progress bar */
+    .progress-shimmer {
+      background: linear-gradient(90deg, transparent, rgba(255,255,255,0.3), transparent);
+      background-size: 200% 100%;
+      animation: shimmer 2s infinite;
+    }
+    @keyframes shimmer {
+      0% { background-position: -200% 0; }
+      100% { background-position: 200% 0; }
+    }
+
+    /* Glowing border */
+    .glow-border {
+      position: relative;
+    }
+    .glow-border::before {
+      content: '';
+      position: absolute;
+      inset: -2px;
+      border-radius: inherit;
+      background: linear-gradient(135deg, #38bdf8, #818cf8, #c084fc, #38bdf8);
+      background-size: 300% 300%;
+      animation: glowRotate 4s linear infinite;
+      z-index: -1;
+      opacity: 0.6;
+    }
+    @keyframes glowRotate {
+      0% { background-position: 0% 50%; }
+      50% { background-position: 100% 50%; }
+      100% { background-position: 0% 50%; }
+    }
+
+    /* Decorative line */
+    .deco-line {
+      height: 3px;
+      background: linear-gradient(90deg, transparent, #38bdf8, #818cf8, transparent);
+      border-radius: 2px;
+    }
+
+    /* Scrollbar */
+    ::-webkit-scrollbar { width: 6px; }
+    ::-webkit-scrollbar-track { background: rgba(255,255,255,0.05); }
+    ::-webkit-scrollbar-thumb { background: rgba(56,189,248,0.3); border-radius: 3px; }
+  </style>
+  <style>@view-transition { navigation: auto; }</style>
+  <script src="/_sdk/data_sdk.js" type="text/javascript"></script>
+ </head>
+ <body class="h-full overflow-auto">
+  <div id="app-wrapper" class="bg-animated w-full h-full relative overflow-auto"><!-- Floating particles -->
+   <div id="particles" class="absolute inset-0 overflow-hidden pointer-events-none" aria-hidden="true"></div><!-- LANGUAGE SELECTION PAGE -->
+   <main id="lang-page" class="relative z-10 flex items-center justify-center w-full h-full p-4">
+    <div class="max-w-xl w-full text-center"><!-- Logo / Brand -->
+     <div class="fade-up delay-1 mb-6">
+      <div class="inline-flex items-center justify-center w-20 h-20 rounded-2xl bg-gradient-to-br from-sky-400/20 to-indigo-500/20 border border-sky-400/30 mb-4">
+       <svg width="40" height="40" viewbox="0 0 40 40" fill="none" aria-hidden="true"><path d="M20 4L36 12V28L20 36L4 28V12L20 4Z" stroke="#38bdf8" stroke-width="2" fill="none" /> <path d="M20 4L36 12L20 20L4 12L20 4Z" fill="#38bdf8" fill-opacity="0.2" /> <circle cx="20" cy="20" r="5" fill="#818cf8" fill-opacity="0.8" /> <path d="M20 15V25M15 20H25" stroke="#e0f2fe" stroke-width="1.5" stroke-linecap="round" />
+       </svg>
+      </div>
+     </div>
+     <h1 id="site-title" class="fade-up delay-2 font-display text-3xl sm:text-4xl font-bold text-white tracking-tight mb-2">Inovasi Tegining-Teganang</h1>
+     <div class="fade-up delay-2 deco-line w-24 mx-auto my-4"></div>
+     <p class="fade-up delay-3 text-sky-200/70 text-base mb-10" id="choose-lang-text">Pilih bahasa Anda / Choose your language</p><!-- Language Cards -->
+     <div class="flex flex-col sm:flex-row gap-4 justify-center items-center fade-up delay-4"><button onclick="selectLanguage('id')" class="lang-card group w-full sm:w-56 rounded-2xl border border-white/10 bg-white/5 p-6 cursor-pointer text-left focus:outline-none focus:ring-2 focus:ring-sky-400/50" aria-label="Pilih Bahasa Indonesia">
+       <div class="flex items-center gap-3 mb-3"><span class="text-3xl" role="img" aria-label="Bendera Indonesia">🇮🇩</span>
+        <div>
+         <div class="text-white font-semibold text-lg group-hover:text-sky-300 transition-colors">
+          Bahasa Indonesia
+         </div>
+         <div class="text-sky-300/50 text-sm">
+          Indonesian
+         </div>
+        </div>
+       </div>
+       <div class="h-0.5 w-0 group-hover:w-full bg-gradient-to-r from-sky-400 to-indigo-400 transition-all duration-500 rounded"></div></button> <button onclick="selectLanguage('en')" class="lang-card group w-full sm:w-56 rounded-2xl border border-white/10 bg-white/5 p-6 cursor-pointer text-left focus:outline-none focus:ring-2 focus:ring-sky-400/50" aria-label="Choose English">
+       <div class="flex items-center gap-3 mb-3"><span class="text-3xl" role="img" aria-label="UK Flag">🇬🇧</span>
+        <div>
+         <div class="text-white font-semibold text-lg group-hover:text-sky-300 transition-colors">
+          English
+         </div>
+         <div class="text-sky-300/50 text-sm">
+          Inggris
+         </div>
+        </div>
+       </div>
+       <div class="h-0.5 w-0 group-hover:w-full bg-gradient-to-r from-sky-400 to-indigo-400 transition-all duration-500 rounded"></div></button>
+     </div>
+     <p class="fade-up delay-5 text-sky-300/30 text-xs mt-10">© 2024 Inovasi Tegining-Teganang</p>
+    </div>
+   </main><!-- MAINTENANCE PAGE (hidden initially) -->
+   <main id="maintenance-page" class="relative z-10 hidden items-center justify-center w-full h-full p-4" style="display:none;">
+    <div class="max-w-lg w-full text-center"><!-- Gear illustration -->
+     <div class="relative inline-block mb-8">
+      <div class="pulse-ring absolute inset-0 rounded-full border-2 border-sky-400/30"></div>
+      <div class="relative">
+       <svg class="gear-spin" width="80" height="80" viewbox="0 0 80 80" fill="none" aria-hidden="true" style="position:relative; z-index:2;"><path d="M40 16C40 16 44 10 40 6C36 10 40 16 40 16ZM40 64C40 64 44 70 40 74C36 70 40 64 40 64ZM16 40C16 40 10 36 6 40C10 44 16 40 16 40ZM64 40C64 40 70 36 74 40C70 44 64 40 64 40ZM22 22C22 22 18 15 13 13C15 18 22 22 22 22ZM58 58C58 58 62 65 67 67C65 62 58 58 58 58ZM22 58C22 58 15 62 13 67C18 65 22 58 22 58ZM58 22C58 22 65 18 67 13C62 15 58 22 58 22Z" stroke="#38bdf8" stroke-width="2" /> <circle cx="40" cy="40" r="16" stroke="#38bdf8" stroke-width="2.5" fill="#0a1628" /> <circle cx="40" cy="40" r="8" fill="#38bdf8" fill-opacity="0.3" />
+       </svg>
+       <svg class="gear-spin-reverse absolute" style="top:-12px; right:-20px; z-index:1;" width="44" height="44" viewbox="0 0 44 44" fill="none" aria-hidden="true"><circle cx="22" cy="22" r="10" stroke="#818cf8" stroke-width="2" fill="#0a1628" /> <circle cx="22" cy="22" r="5" fill="#818cf8" fill-opacity="0.3" /> <path d="M22 6V10M22 34V38M6 22H10M34 22H38M10 10L13 13M31 31L34 34M34 10L31 13M13 31L10 34" stroke="#818cf8" stroke-width="1.5" stroke-linecap="round" />
+       </svg>
+      </div>
+     </div>
+     <h2 id="maint-title" class="font-display text-3xl sm:text-4xl font-bold text-white mb-3"></h2>
+     <div class="deco-line w-16 mx-auto my-5"></div>
+     <p id="maint-message" class="text-sky-200/70 text-base leading-relaxed mb-8 max-w-sm mx-auto"></p><!-- Fake progress bar -->
+     <div class="relative w-64 mx-auto mb-8">
+      <div class="h-1.5 rounded-full bg-white/10 overflow-hidden">
+       <div class="h-full w-2/3 rounded-full bg-gradient-to-r from-sky-400 to-indigo-500 relative">
+        <div class="progress-shimmer absolute inset-0 rounded-full"></div>
+       </div>
+      </div>
+      <p id="maint-progress" class="text-sky-300/40 text-xs mt-2"></p>
+     </div><!-- Back button --> <button id="back-btn" onclick="goBack()" class="inline-flex items-center gap-2 px-5 py-2.5 rounded-xl bg-white/5 border border-white/10 text-sky-200/70 hover:text-white hover:bg-white/10 transition-all text-sm focus:outline-none focus:ring-2 focus:ring-sky-400/50">
+      <svg width="16" height="16" viewbox="0 0 16 16" fill="none" aria-hidden="true"><path d="M10 12L6 8L10 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
+      </svg><span id="back-text"></span> </button>
+     <p class="text-sky-300/30 text-xs mt-10">© 2024 Inovasi Tegining-Teganang</p>
+    </div>
+   </main>
+  </div>
+  <script>
+    // =====================
+    // Config & Defaults
+    // =====================
+    const defaultConfig = {
+      site_title: 'Inovasi Tegining-Teganang',
+      maintenance_title_id: 'Website Dalam Perawatan',
+      maintenance_title_en: 'Under Maintenance',
+      maintenance_msg_id: 'Kami sedang melakukan peningkatan dan perbaikan untuk memberikan pengalaman terbaik bagi Anda. Silakan kembali lagi nanti!',
+      maintenance_msg_en: 'We are currently performing upgrades and improvements to bring you the best experience. Please check back soon!',
+      background_color: '#0a1628',
+      accent_color: '#38bdf8',
+      text_color: '#e0f2fe',
+      card_color: '#1e3a5f',
+      highlight_color: '#818cf8',
+      font_family: 'Playfair Display',
+      font_size: 16
+    };
+
+    let currentLang = null;
+
+    const i18n = {
+      id: {
+        progress: '~67% selesai — Estimasi sebentar lagi',
+        back: 'Ganti Bahasa'
+      },
+      en: {
+        progress: '~67% complete — Estimated soon',
+        back: 'Change Language'
+      }
+    };
+
+    // =====================
+    // Particles
+    // =====================
+    function createParticles() {
+      const container = document.getElementById('particles');
+      for (let i = 0; i < 20; i++) {
+        const p = document.createElement('div');
+        p.className = 'particle';
+        const size = Math.random() * 4 + 2;
+        p.style.width = size + 'px';
+        p.style.height = size + 'px';
+        p.style.left = Math.random() * 100 + '%';
+        p.style.top = Math.random() * 100 + '%';
+        p.style.background = Math.random() > 0.5 ? 'rgba(56,189,248,0.4)' : 'rgba(129,140,248,0.3)';
+        p.style.animationDelay = (Math.random() * 6) + 's';
+        p.style.animationDuration = (Math.random() * 6 + 6) + 's';
+        container.appendChild(p);
+      }
+    }
+    createParticles();
+
+    // =====================
+    // Navigation
+    // =====================
+    function selectLanguage(lang) {
+      currentLang = lang;
+      const langPage = document.getElementById('lang-page');
+      const maintPage = document.getElementById('maintenance-page');
+
+      langPage.classList.add('page-exit');
+
+      setTimeout(() => {
+        langPage.style.display = 'none';
+        langPage.classList.remove('page-exit');
+
+        updateMaintenanceContent();
+
+        maintPage.style.display = 'flex';
+        maintPage.classList.add('page-enter');
+        setTimeout(() => maintPage.classList.remove('page-enter'), 800);
+      }, 500);
+    }
+
+    function goBack() {
+      const langPage = document.getElementById('lang-page');
+      const maintPage = document.getElementById('maintenance-page');
+
+      maintPage.classList.add('page-exit');
+
+      setTimeout(() => {
+        maintPage.style.display = 'none';
+        maintPage.classList.remove('page-exit');
+
+        langPage.style.display = 'flex';
+        langPage.classList.add('page-enter');
+        setTimeout(() => langPage.classList.remove('page-enter'), 800);
+      }, 500);
+    }
+
+    function updateMaintenanceContent() {
+      const config = window.elementSdk ? window.elementSdk.config : defaultConfig;
+      const lang = currentLang || 'id';
+
+      const titleKey = lang === 'id' ? 'maintenance_title_id' : 'maintenance_title_en';
+      const msgKey = lang === 'id' ? 'maintenance_msg_id' : 'maintenance_msg_en';
+
+      document.getElementById('maint-title').textContent = config[titleKey] || defaultConfig[titleKey];
+      document.getElementById('maint-message').textContent = config[msgKey] || defaultConfig[msgKey];
+      document.getElementById('maint-progress').textContent = i18n[lang].progress;
+      document.getElementById('back-text').textContent = i18n[lang].back;
+    }
+
+    // =====================
+    // Element SDK
+    // =====================
+    function applyConfig(config) {
+      const accent = config.accent_color || defaultConfig.accent_color;
+      const textCol = config.text_color || defaultConfig.text_color;
+      const highlight = config.highlight_color || defaultConfig.highlight_color;
+      const fontFamily = config.font_family || defaultConfig.font_family;
+      const baseSize = config.font_size || defaultConfig.font_size;
+
+      const wrapper = document.getElementById('app-wrapper');
+
+      // Title
+      const titleEl = document.getElementById('site-title');
+      titleEl.textContent = config.site_title || defaultConfig.site_title;
+      titleEl.style.fontFamily = `${fontFamily}, Playfair Display, serif`;
+      titleEl.style.fontSize = `${baseSize * 2.2}px`;
+      titleEl.style.color = textCol;
+
+      // Maintenance title
+      const maintTitle = document.getElementById('maint-title');
+      maintTitle.style.fontFamily = `${fontFamily}, Playfair Display, serif`;
+      maintTitle.style.fontSize = `${baseSize * 2.2}px`;
+      maintTitle.style.color = textCol;
+
+      // Body text color
+      const maintMsg = document.getElementById('maint-message');
+      maintMsg.style.fontSize = `${baseSize}px`;
+
+      // Choose lang text
+      const chooseLang = document.getElementById('choose-lang-text');
+      chooseLang.style.fontSize = `${baseSize}px`;
+
+      // Language cards
+      document.querySelectorAll('.lang-card').forEach(card => {
+        card.style.borderColor = `${accent}22`;
+        card.style.fontSize = `${baseSize * 0.9}px`;
+      });
+
+      // Deco lines
+      document.querySelectorAll('.deco-line').forEach(line => {
+        line.style.background = `linear-gradient(90deg, transparent, ${accent}, ${highlight}, transparent)`;
+      });
+
+      // Update maintenance content if on that page
+      if (currentLang) {
+        updateMaintenanceContent();
+      }
+    }
+
+    // Init SDK
+    if (window.elementSdk) {
+      window.elementSdk.init({
+        defaultConfig,
+        onConfigChange: async (config) => {
+          applyConfig(config);
+        },
+        mapToCapabilities: (config) => ({
+          recolorables: [
+            {
+              get: () => config.background_color || defaultConfig.background_color,
+              set: (v) => { config.background_color = v; window.elementSdk.setConfig({ background_color: v }); }
+            },
+            {
+              get: () => config.card_color || defaultConfig.card_color,
+              set: (v) => { config.card_color = v; window.elementSdk.setConfig({ card_color: v }); }
+            },
+            {
+              get: () => config.text_color || defaultConfig.text_color,
+              set: (v) => { config.text_color = v; window.elementSdk.setConfig({ text_color: v }); }
+            },
+            {
+              get: () => config.accent_color || defaultConfig.accent_color,
+              set: (v) => { config.accent_color = v; window.elementSdk.setConfig({ accent_color: v }); }
+            },
+            {
+              get: () => config.highlight_color || defaultConfig.highlight_color,
+              set: (v) => { config.highlight_color = v; window.elementSdk.setConfig({ highlight_color: v }); }
+            }
+          ],
+          borderables: [],
+          fontEditable: {
+            get: () => config.font_family || defaultConfig.font_family,
+            set: (v) => { config.font_family = v; window.elementSdk.setConfig({ font_family: v }); }
+          },
+          fontSizeable: {
+            get: () => config.font_size || defaultConfig.font_size,
+            set: (v) => { config.font_size = v; window.elementSdk.setConfig({ font_size: v }); }
+          }
+        }),
+        mapToEditPanelValues: (config) => new Map([
+          ['site_title', config.site_title || defaultConfig.site_title],
+          ['maintenance_title_id', config.maintenance_title_id || defaultConfig.maintenance_title_id],
+          ['maintenance_title_en', config.maintenance_title_en || defaultConfig.maintenance_title_en],
+          ['maintenance_msg_id', config.maintenance_msg_id || defaultConfig.maintenance_msg_id],
+          ['maintenance_msg_en', config.maintenance_msg_en || defaultConfig.maintenance_msg_en]
+        ])
+      });
+    }
+
+    // Apply defaults on load
+    applyConfig(defaultConfig);
+  </script>
+ <script>(function(){function c(){var b=a.contentDocument||a.contentWindow.document;if(b){var d=b.createElement('script');d.innerHTML="window.__CF$cv$params={r:'9cb7fe3142f49f89',t:'MTc3MDY4ODYxNy4wMDAwMDA='};var a=document.createElement('script');a.nonce='';a.src='/cdn-cgi/challenge-platform/scripts/jsd/main.js';document.getElementsByTagName('head')[0].appendChild(a);";b.getElementsByTagName('head')[0].appendChild(d)}}if(document.body){var a=document.createElement('iframe');a.height=1;a.width=1;a.style.position='absolute';a.style.top=0;a.style.left=0;a.style.border='none';a.style.visibility='hidden';document.body.appendChild(a);if('loading'!==document.readyState)c();else if(window.addEventListener)document.addEventListener('DOMContentLoaded',c);else{var e=document.onreadystatechange||function(){};document.onreadystatechange=function(b){e(b);'loading'!==document.readyState&&(document.onreadystatechange=e,c())}}}})();</script></body>
+</html>
